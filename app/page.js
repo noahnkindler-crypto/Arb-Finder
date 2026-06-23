@@ -55,6 +55,12 @@ export default function Home() {
         }
 
         if (best1 !== null && best2 !== null) {
+          if (marketType === 'spreads' && best1Point !== undefined && best2Point !== undefined) {
+            if (best1Point + best2Point !== 0) continue;
+          }
+          if (marketType === 'totals' && best1Point !== undefined && best2Point !== undefined) {
+            if (best1Point !== best2Point) continue;
+          }
           const total = best1 + best2;
           if (total < 1) {
             const edge = (1 - total) * 100;
